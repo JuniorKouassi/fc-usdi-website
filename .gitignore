@@ -9,3 +9,10 @@ AMBACI VIENNA/
 AMBACI VIENNA MOBILE/
 WEB DESIGN MINDSET/
 CLAUDE.md
+
+# wrangler files
+.wrangler
+.dev.vars*
+!.dev.vars.example
+.env*
+!.env.example
