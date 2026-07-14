@@ -240,7 +240,7 @@
   <div class="section-wrap">
     <div class="section-heading">
       <h2 data-i18n-html="fixtures.heading">Résultats & <span>Matchs</span></h2>
-      <a href="teams.html" data-i18n="fixtures.all">Tous les matchs →</a>
+      <a href="https://www.youtube.com/channel/UCHBA-fiMs9pzXdzV5kR6Mww" target="_blank" rel="noopener" data-i18n="fixtures.all">Tous les matchs →</a>
     </div>
     <div class="fixtures-strip" id="fixtures-strip"></div>
   </div>
@@ -470,7 +470,7 @@
       const comp = lang === 'fr' ? (COMP_FR[f.competition] || f.competition) : f.competition;
       const badge = f.result ? `<div class="fixture-result-label result-label-${f.result}">${rl[f.result] || ''}</div>` : '';
       return `
-      <div class="fixture-card result-${f.result}">
+      <a class="fixture-card result-${f.result}" href="https://www.youtube.com/channel/UCHBA-fiMs9pzXdzV5kR6Mww" target="_blank" rel="noopener" style="text-decoration:none;color:inherit;display:block;">
         <div class="fixture-competition">${comp}</div>
         <div class="fixture-teams">
           <span class="fixture-team home">${f.home}</span>
@@ -481,7 +481,7 @@
           <div class="fixture-date">${translateDate(f.date, lang)}</div>
           ${badge}
         </div>
-      </div>`;
+      </a>`;
     }).join('');
   }
 
