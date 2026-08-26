@@ -133,18 +133,18 @@
   <div class="hero-score-bar">
     <div class="score-item">
       <div class="score-label" data-i18n="hero.last">Dernier résultat</div>
-      <div class="score-value">Africa Sport <span class="highlight">3 – 1</span> FC USDI</div>
-      <div class="score-sub" data-i18n="hero.last.sub1">Amical · 09 Mar 2026</div>
+      <div class="score-value">FC USDI <span class="highlight">1 – 0</span> FC Satellite</div>
+      <div class="score-sub" data-i18n="hero.last.sub1">Amical · 26 Août 2026</div>
     </div>
     <div class="score-item">
       <div class="score-label" data-i18n="hero.prev">Résultat précédent</div>
-      <div class="score-value">FC USDI <span class="highlight">2 – 1</span> Abidjan City</div>
-      <div class="score-sub" data-i18n="hero.last.sub2">Amical · 12 Jan 2026</div>
+      <div class="score-value">FC USDI <span class="highlight">2 – 1</span> Real FC d'Abengourou</div>
+      <div class="score-sub" data-i18n="hero.last.sub2">Amical · 22 Août 2026</div>
     </div>
     <div class="score-item">
       <div class="score-label" data-i18n="hero.next">Prochain match</div>
-      <div class="score-value">USDI FC vs TPK</div>
-      <div class="score-sub">04 Juin 2026</div>
+      <div class="score-value" data-i18n="hero.next.tbd">À déterminer</div>
+      <div class="score-sub"></div>
     </div>
     <div class="score-cta">
       <a href="#fixtures" data-i18n="hero.ticket">Billetterie →</a>
@@ -199,7 +199,7 @@
         <div class="sidebar-block">
           <div class="sidebar-title" data-i18n="sidebar.next">PROCHAIN MATCH</div>
           <div class="match-widget">
-            <div class="match-date">Ligue 1 · 04 Juin · 15h00</div>
+            <div class="match-date" data-i18n="hero.next.tbd">À déterminer</div>
             <div class="match-teams-row">
               <div class="match-club">
                 <div class="match-club-badge" style="background:#000;padding:2px;">
@@ -210,7 +210,7 @@
               <div class="match-vs">VS</div>
               <div class="match-club">
                 <div class="match-club-badge opp">⚽</div>
-                <div class="match-club-name">TPK</div>
+                <div class="match-club-name">?</div>
               </div>
             </div>
             <a href="#" class="btn-ticket" data-i18n="sidebar.ticket">Billetterie</a>
@@ -470,7 +470,7 @@
       const comp = lang === 'fr' ? (COMP_FR[f.competition] || f.competition) : f.competition;
       const badge = f.result ? `<div class="fixture-result-label result-label-${f.result}">${rl[f.result] || ''}</div>` : '';
       return `
-      <a class="fixture-card result-${f.result}" href="https://www.youtube.com/channel/UCHBA-fiMs9pzXdzV5kR6Mww" target="_blank" rel="noopener" style="text-decoration:none;color:inherit;display:block;">
+      <a class="fixture-card result-${f.result}" href="${f.link || 'https://www.youtube.com/channel/UCHBA-fiMs9pzXdzV5kR6Mww'}" target="_blank" rel="noopener" style="text-decoration:none;color:inherit;display:block;">
         <div class="fixture-competition">${comp}</div>
         <div class="fixture-teams">
           <span class="fixture-team home">${f.home}</span>

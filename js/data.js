@@ -23,6 +23,10 @@ const NEWS = [
 ];
 
 const FIXTURES = [
+  { competition:"Friendly", home:"FC USDI", away:"FC Satellite", score:"1 – 0", date:"26 Aug 2026", result:"win", link:"https://www.facebook.com/share/p/1PKiQL4wm4/" },
+  { competition:"Friendly", home:"FC USDI", away:"Real FC d'Abengourou", score:"2 – 1", date:"22 Aug 2026", result:"win", link:"https://www.facebook.com/share/p/1HWZfxBXwD/" },
+  { competition:"Friendly", home:"FC USDI", away:"Selafe", score:"5 – 1", date:"30 Jul 2026", result:"win", link:"https://www.facebook.com/share/p/18AFv7n3mG/" },
+  { competition:"Friendly", home:"FC USDI", away:"TPK", score:"2 – 2", date:"19 Jun 2026", result:"draw", link:"https://www.facebook.com/share/v/19LQfAqmsD/" },
   { competition:"Friendly", home:"FC USDI", away:"Abidjan City", score:"2 – 1", date:"12 Jan 2026", result:"win" },
   { competition:"Friendly", home:"FC USDI", away:"Stade d'Abidjan", score:"2 – 0", date:"19 Sep 2023", result:"win" },
   { competition:"Friendly", home:"AFAD", away:"FC USDI", score:"2 – 0", date:"15 Apr 2023", result:"loss" },
