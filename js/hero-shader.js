@@ -87,27 +87,10 @@
       return uniforms;
     }
 
-    /* ── energy rings ── */
-    function makeRing(r, px, py, pz, spd) {
-      var geo  = new THREE.RingGeometry(r * 0.78, r, 48);
-      var mat  = new THREE.MeshBasicMaterial({ color: new THREE.Color(GOLD), transparent: true, opacity: 0.22, side: THREE.DoubleSide, depthWrite: false });
-      var mesh = new THREE.Mesh(geo, mat);
-      mesh.position.set(px, py, pz);
-      scene.add(mesh);
-      return { mesh: mesh, mat: mat, spd: spd };
-    }
-
     /* right-side glow (behind logo / score bar area) */
     var planes = [
       makeShaderPlane( 1.6,  0.1,  0,   GOLD,  DGOLD),
       makeShaderPlane(-1.0,  0.3, -0.4, DGOLD, BLACK)
-    ];
-
-    var rings = [
-      makeRing(1.3,  1.9,  0.2,  0,    1.0),
-      makeRing(0.75, 1.3, -0.6,  0.1, -1.6),
-      makeRing(1.0, -0.7,  0.5, -0.2,  0.7),
-      makeRing(0.5,  0.4,  0.7,  0,   -2.2)
     ];
 
     /* ── loop ── */
@@ -121,11 +104,6 @@
       planes.forEach(function (u, i) {
         u.time.value      = t + i * 2.5;
         u.intensity.value = 1.0 + Math.sin(t * 2 + i) * 0.3;
-      });
-
-      rings.forEach(function (r, i) {
-        r.mesh.rotation.z = t * r.spd;
-        r.mat.opacity     = 0.12 + Math.sin(t * 3 + i * 1.5) * 0.07;
       });
 
       renderer.render(scene, camera);
