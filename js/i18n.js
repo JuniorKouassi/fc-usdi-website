@@ -54,6 +54,7 @@ const T = {
     'hero.last.sub2':     'Amical · 22 Août 2026',
     'hero.next':          'Prochain match',
     'hero.next.tbd':      'À déterminer',
+    'hero.next.sub':      'Amical · 28 Août 2026',
     'hero.champ':         'Championnat',
     'hero.champ.sub':     'Ligue 1 Côte d\'Ivoire',
     'hero.ticket':        'Billetterie →',
@@ -93,6 +94,7 @@ const T = {
 
     /* Sidebar */
     'sidebar.next':       'PROCHAIN MATCH',
+    'sidebar.next.date':  'Amical · 28 Août · 08h00',
     'sidebar.ticket':     'Billetterie',
     'sidebar.standings':  'CLASSEMENT',
     'sidebar.join.title': 'REJOINDRE LE CLUB',
@@ -236,6 +238,7 @@ const T = {
     'hero.last.sub2':     'Friendly · 22 Aug 2026',
     'hero.next':          'Next match',
     'hero.next.tbd':      'To be announced',
+    'hero.next.sub':      'Friendly · 28 Aug 2026',
     'hero.champ':         'Championship',
     'hero.champ.sub':     'Ligue 1 Côte d\'Ivoire',
     'hero.ticket':        'Tickets →',
@@ -275,6 +278,7 @@ const T = {
 
     /* Sidebar */
     'sidebar.next':       'NEXT MATCH',
+    'sidebar.next.date':  'Friendly · 28 Aug · 08:00',
     'sidebar.ticket':     'Tickets',
     'sidebar.standings':  'STANDINGS',
     'sidebar.join.title': 'JOIN THE CLUB',
