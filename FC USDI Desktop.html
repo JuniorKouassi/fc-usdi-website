@@ -89,7 +89,26 @@
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-bg"></div>
+  <video class="hero-video" autoplay muted loop playsinline preload="auto" poster="video/hero-poster.jpg" aria-hidden="true">
+    <source src="video/hero.mp4" type="video/mp4">
+  </video>
+  <button type="button" class="hero-sound" id="heroSound" aria-label="Activer le son" aria-pressed="false">
+    <i class="fa-solid fa-volume-xmark"></i>
+  </button>
+  <script>
+    (function () {
+      var v = document.querySelector('.hero-video');
+      var b = document.getElementById('heroSound');
+      if (!v || !b) return;
+      b.addEventListener('click', function () {
+        v.muted = !v.muted;
+        if (!v.muted) v.play();
+        b.setAttribute('aria-pressed', String(!v.muted));
+        b.setAttribute('aria-label', v.muted ? 'Activer le son' : 'Couper le son');
+        b.innerHTML = '<i class="fa-solid ' + (v.muted ? 'fa-volume-xmark' : 'fa-volume-high') + '"></i>';
+      });
+    })();
+  </script>
   <div class="hero-overlay-left"></div>
   <div class="hero-overlay-bottom"></div>
 
@@ -108,7 +127,7 @@
 
   <div class="hero-content">
     <div class="hero-main">
-      <div class="hero-season" data-i18n="hero.season">⚽ Saison 2025 / 2026</div>
+      <div class="hero-season" data-i18n="hero.season">⚽ Saison 2026 / 2027</div>
       <!-- Title row: title + badge sit side-by-side on mobile -->
       <div class="hero-title-row">
         <h1 class="hero-title" data-i18n-html="hero.title">
@@ -118,7 +137,6 @@
           <div class="hero-badge-ring">
             <img src="img/logo.png" alt="USDI FC" class="hero-badge-logo" />
           </div>
-          <div class="hero-badge-label" data-i18n-html="hero.badge">UNION SPORTIVE<br />DE LA DIASPORA</div>
         </div>
       </div>
       <p class="hero-subtitle" data-i18n="hero.subtitle">Club de Football · Centre de Formation · Détection de Talents</p>
@@ -133,21 +151,18 @@
   <div class="hero-score-bar">
     <div class="score-item">
       <div class="score-label" data-i18n="hero.last">Dernier résultat</div>
-      <div class="score-value">FC USDI <span class="highlight">1 – 0</span> FC Satellite</div>
-      <div class="score-sub" data-i18n="hero.last.sub1">Amical · 26 Août 2026</div>
+      <div class="score-value">AS Denguélé <span class="highlight">0 – 0</span> FC USDI</div>
+      <div class="score-sub" data-i18n="hero.last.sub1">Amical · 7 Octobre 2026</div>
     </div>
     <div class="score-item">
       <div class="score-label" data-i18n="hero.prev">Résultat précédent</div>
-      <div class="score-value">FC USDI <span class="highlight">2 – 1</span> Real FC d'Abengourou</div>
-      <div class="score-sub" data-i18n="hero.last.sub2">Amical · 22 Août 2026</div>
+      <div class="score-value">FC USDI <span class="highlight">1 – 0</span> FC Satellite</div>
+      <div class="score-sub" data-i18n="hero.last.sub2">Amical · 26 Août 2026</div>
     </div>
     <div class="score-item">
       <div class="score-label" data-i18n="hero.next">Prochain match</div>
-      <div class="score-value">AS Denguélé vs FC USDI</div>
-      <div class="score-sub" data-i18n="hero.next.sub">Amical · 28 Août 2026</div>
-    </div>
-    <div class="score-cta">
-      <a href="https://www.facebook.com/share/p/1KMieoEYvr/" target="_blank" rel="noopener" data-i18n="hero.ticket">Billetterie →</a>
+      <div class="score-value" data-i18n="hero.next.tbd">À déterminer</div>
+      <div class="score-sub" data-i18n="hero.next.sub">Date à confirmer</div>
     </div>
   </div>
 </section>
@@ -199,23 +214,15 @@
         <div class="sidebar-block">
           <div class="sidebar-title" data-i18n="sidebar.next">PROCHAIN MATCH</div>
           <div class="match-widget">
-            <div class="match-date" data-i18n="sidebar.next.date">Amical · 28 Août · 08h00</div>
-            <div class="match-teams-row">
+            <div class="match-date" data-i18n="sidebar.next.date">Date à confirmer</div>
+            <div class="match-teams-row" style="justify-content:center;">
               <div class="match-club">
                 <div class="match-club-badge" style="background:#000;padding:2px;">
                   <img src="img/logo.png" alt="USDI FC" style="width:100%;height:100%;object-fit:contain;border-radius:50%;display:block;" />
                 </div>
-                <div class="match-club-name">USDI FC</div>
-              </div>
-              <div class="match-vs">VS</div>
-              <div class="match-club">
-                <div class="match-club-badge opp" style="background:#fff;padding:2px;border:none;">
-                  <img src="img/opp-denguele.png" alt="AS Denguélé" style="width:100%;height:100%;object-fit:contain;border-radius:50%;display:block;" />
-                </div>
-                <div class="match-club-name">AS Denguélé</div>
+                <div class="match-club-name" data-i18n="sidebar.next.tbd">Prochain match à annoncer</div>
               </div>
             </div>
-            <a href="https://www.facebook.com/share/p/1KMieoEYvr/" target="_blank" rel="noopener" class="btn-ticket" data-i18n="sidebar.ticket">Billetterie</a>
           </div>
         </div>
         <div class="sidebar-cta">
@@ -437,7 +444,7 @@
 <script src="js/data.js"></script>
 <script src="js/main.js"></script>
 <script src="js/i18n.js"></script>
-<script src="js/hero-shader.js"></script>
+<!-- hero-shader.js disabled: hero now uses video -->
 <script>
   // News small cards
   const ng = document.getElementById('news-grid');
