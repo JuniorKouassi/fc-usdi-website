@@ -1,5 +1,5 @@
 (function () {
-  var GOLD   = '#C9A84C';
+  var GOLD   = '#D4A017';
   var DGOLD  = '#3a2800';
   var BLACK  = '#000000';
 
@@ -27,7 +27,7 @@
     '  float n = sin(uv.x * 20.0 + time)       * cos(uv.y * 15.0 + time * 0.8);',
     '  n += sin(uv.x * 35.0 - time * 2.0) * cos(uv.y * 25.0 + time * 1.2) * 0.5;',
     '  vec3 col = mix(color1, color2, n * 0.5 + 0.5);',
-    '  col = mix(col, vec3(1.0, 0.85, 0.3), pow(abs(n), 2.0) * intensity * 0.35);',
+    '  col = mix(col, vec3(0.83, 0.63, 0.09), pow(abs(n), 2.0) * intensity * 0.35);',
     '  float glow = max(0.0, 1.0 - length(uv - 0.5) * 2.0);',
     '  glow = pow(glow, 2.0);',
     '  gl_FragColor = vec4(col * glow, glow * 0.38);',
