@@ -167,6 +167,9 @@ const T = {
     'footer.copy':        '© 2026 Web Design Mindset. All rights reserved.',
     'footer.legal':       'Mentions légales',
     'footer.privacy':     'Politique de confidentialité',
+    'footer.legal.title': 'Association sportive officiellement déclarée',
+    'footer.legal.receipt': 'Récépissé de déclaration n° 0186/MIS/DGAT/DAG/SDVA, délivré le 7 juillet 2026 par le Ministère de l\'Intérieur et de la Sécurité',
+    'footer.legal.jo':    'Publiée au Journal Officiel de la République de Côte d\'Ivoire n° 69 du 27 août 2026',
 
     /* Other pages */
     'page.teams.title':   'Nos <span>Équipes</span>',
@@ -351,6 +354,9 @@ const T = {
     'footer.copy':        '© 2026 Web Design Mindset. All rights reserved.',
     'footer.legal':       'Legal Notice',
     'footer.privacy':     'Privacy Policy',
+    'footer.legal.title': 'Officially registered sports association',
+    'footer.legal.receipt': 'Declaration receipt no. 0186/MIS/DGAT/DAG/SDVA, issued on 7 July 2026 by the Ministry of the Interior and Security',
+    'footer.legal.jo':    'Published in the Official Gazette of the Republic of Côte d\'Ivoire no. 69 of 27 August 2026',
 
     /* Other pages */
     'page.teams.title':   'Our <span>Teams</span>',

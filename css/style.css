@@ -1280,6 +1280,20 @@ ul { list-style:none; }
 .footer-col ul { display:flex; flex-direction:column; gap:0.5rem; }
 .footer-col a { font-size: 0.78rem; color: var(--gray-3); transition: color var(--transition); }
 .footer-col a:hover { color: var(--white); }
+.footer-legal {
+  text-align: center;
+  padding: 1.5rem 1rem;
+  border-bottom: 1px solid var(--dark);
+}
+.footer-legal-title {
+  color: var(--gold);
+  font-weight: 700;
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 0.6rem;
+}
+.footer-legal p { font-size: 0.72rem; color: var(--gray-3); margin: 0.2rem 0; }
 .footer-bottom {
   padding: 1rem 0;
   display: flex;
