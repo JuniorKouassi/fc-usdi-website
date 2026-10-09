@@ -221,7 +221,7 @@
       tag: 'sheet.tag.def',
       height: '1,82 m',
       weight: '80 kg',
-      club: 'Union Sportive de la Diaspora',
+      club: 'Espoir de Koumassi',
       pos: 'sheet.pos.cb',
       foot: 'sheet.foot.left'
     }
@@ -230,7 +230,6 @@
   document.getElementById('sheets-grid').innerHTML = PLAYER_SHEETS.map(p => `
     <article class="sheet">
       <div class="sheet-photo">
-        <span class="sheet-tag" data-i18n="${p.tag}"></span>
         <img src="${p.photo}" alt="${p.alt}" loading="lazy"
              onerror="this.parentNode.classList.add('no-photo');this.remove();" />
         <i class="fa-solid fa-user sheet-photo-fallback" aria-hidden="true"></i>
