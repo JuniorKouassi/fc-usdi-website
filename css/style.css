@@ -523,6 +523,8 @@ ul { list-style:none; }
   overflow: hidden;
 }
 .ticker-label {
+  position: relative;
+  z-index: 2;
   flex-shrink: 0;
   background: var(--gold);
   color: #000;
