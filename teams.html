@@ -212,7 +212,8 @@
   render();
 
   /* ── Fiches techniques des joueurs ──
-     Pour ajouter un joueur : ajouter un objet ci-dessous et déposer sa photo dans img/players/ */
+     Pour ajouter un joueur : ajouter un objet ci-dessous et déposer sa photo dans img/players/
+     Bouton vidéo : ajouter  video: 'https://www.youtube.com/...'  au joueur (sans lien, le bouton n'apparaît pas) */
   const PLAYER_SHEETS = [
     {
       name: 'Boubacar Junior <span>KONE</span>',
@@ -222,7 +223,8 @@
       weight: '80 kg',
       club: 'Espoir de Koumassi',
       pos: 'sheet.pos.cb',
-      foot: 'sheet.foot.left'
+      foot: 'sheet.foot.left',
+      video: 'https://youtu.be/XGRyCkb25ys'
     },
     {
       name: 'Konan Arthur <span>KONAN</span>',
@@ -244,7 +246,8 @@
       club: 'Espoir de Koumassi',
       number: 9,
       pos: 'sheet.pos.st',
-      foot: 'sheet.foot.right'
+      foot: 'sheet.foot.right',
+      video: 'https://youtu.be/Z0TVw_7T9AQ'
     }
   ];
 
@@ -271,6 +274,7 @@
           <div class="sheet-row"><dt data-i18n="sheet.pos">Poste</dt><dd data-i18n="${p.pos}"></dd></div>
           <div class="sheet-row"><dt data-i18n="sheet.foot">Pied fort</dt><dd data-i18n="${p.foot}"></dd></div>
         </dl>
+        ${p.video ? `<a class="sheet-video" href="${p.video}" target="_blank" rel="noopener"><i class="fa-brands fa-youtube"></i><span data-i18n="sheet.video">Voir la vidéo</span></a>` : ''}
       </div>
     </article>`).join('');
 </script>
