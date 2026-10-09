@@ -128,6 +128,12 @@
       <button class="filter-chip" data-filter="academy" data-i18n="filter.academy">Académie</button>
     </div>
     <div class="teams-grid" id="teams-grid"></div>
+
+    <div class="sheets-section" id="player-sheets">
+      <h2 class="sheets-title" data-i18n-html="sheet.title">Fiches <span>techniques</span></h2>
+      <p class="sheets-sub" data-i18n="sheet.sub">Les joueurs de l'USDI FC en un coup d'œil</p>
+      <div class="sheets-grid" id="sheets-grid"></div>
+    </div>
   </div>
 </section>
 
@@ -204,6 +210,48 @@
     });
   });
   render();
+
+  /* ── Fiches techniques des joueurs ──
+     Pour ajouter un joueur : ajouter un objet ci-dessous et déposer sa photo dans img/players/ */
+  const PLAYER_SHEETS = [
+    {
+      name: 'Boubacar Junior <span>KONE</span>',
+      alt: 'Boubacar Junior KONE',
+      photo: 'img/players/boubacar-junior-kone.jpg',
+      tag: 'sheet.tag.def',
+      height: '1,82 m',
+      weight: '80 kg',
+      club: 'Union Sportive de la Diaspora',
+      pos: 'sheet.pos.cb',
+      foot: 'sheet.foot.left'
+    }
+  ];
+
+  document.getElementById('sheets-grid').innerHTML = PLAYER_SHEETS.map(p => `
+    <article class="sheet">
+      <div class="sheet-photo">
+        <span class="sheet-tag" data-i18n="${p.tag}"></span>
+        <img src="${p.photo}" alt="${p.alt}" loading="lazy"
+             onerror="this.parentNode.classList.add('no-photo');this.remove();" />
+        <i class="fa-solid fa-user sheet-photo-fallback" aria-hidden="true"></i>
+      </div>
+      <div class="sheet-body">
+        <div class="sheet-club">${p.club}</div>
+        <h3 class="sheet-name">${p.name}</h3>
+        <div class="sheet-pos" data-i18n="${p.pos}"></div>
+        <div class="sheet-stats">
+          <div class="sheet-stat"><div class="v" data-i18n="sheet.height.val">${p.height}</div><div class="l" data-i18n="sheet.height">Taille</div></div>
+          <div class="sheet-stat"><div class="v">${p.weight}</div><div class="l" data-i18n="sheet.weight">Poids</div></div>
+          <div class="sheet-stat"><div class="v" data-i18n="${p.foot}"></div><div class="l" data-i18n="sheet.foot">Pied fort</div></div>
+        </div>
+        <dl class="sheet-rows">
+          <div class="sheet-row"><dt data-i18n="sheet.name">Nom</dt><dd>${p.alt}</dd></div>
+          <div class="sheet-row"><dt data-i18n="sheet.club">Club actuel</dt><dd>${p.club}</dd></div>
+          <div class="sheet-row"><dt data-i18n="sheet.pos">Poste</dt><dd data-i18n="${p.pos}"></dd></div>
+          <div class="sheet-row"><dt data-i18n="sheet.foot">Pied fort</dt><dd data-i18n="${p.foot}"></dd></div>
+        </dl>
+      </div>
+    </article>`).join('');
 </script>
 <script src="js/i18n.js"></script>
 
