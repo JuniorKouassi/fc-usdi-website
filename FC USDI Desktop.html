@@ -92,23 +92,6 @@
   <video class="hero-video" autoplay muted loop playsinline preload="auto" poster="video/hero-poster.jpg" aria-hidden="true">
     <source src="video/hero.mp4" type="video/mp4">
   </video>
-  <button type="button" class="hero-sound" id="heroSound" aria-label="Activer le son" aria-pressed="false">
-    <i class="fa-solid fa-volume-xmark"></i>
-  </button>
-  <script>
-    (function () {
-      var v = document.querySelector('.hero-video');
-      var b = document.getElementById('heroSound');
-      if (!v || !b) return;
-      b.addEventListener('click', function () {
-        v.muted = !v.muted;
-        if (!v.muted) v.play();
-        b.setAttribute('aria-pressed', String(!v.muted));
-        b.setAttribute('aria-label', v.muted ? 'Activer le son' : 'Couper le son');
-        b.innerHTML = '<i class="fa-solid ' + (v.muted ? 'fa-volume-xmark' : 'fa-volume-high') + '"></i>';
-      });
-    })();
-  </script>
   <div class="hero-overlay-left"></div>
   <div class="hero-overlay-bottom"></div>
 
