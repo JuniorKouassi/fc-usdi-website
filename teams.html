@@ -218,12 +218,22 @@
       name: 'Boubacar Junior <span>KONE</span>',
       alt: 'Boubacar Junior KONE',
       photo: 'img/players/boubacar-junior-kone.jpg',
-      tag: 'sheet.tag.def',
-      height: '1,82 m',
+      height: 'sheet.h.kone',
       weight: '80 kg',
       club: 'Espoir de Koumassi',
       pos: 'sheet.pos.cb',
       foot: 'sheet.foot.left'
+    },
+    {
+      name: 'Konan Arthur <span>KONAN</span>',
+      alt: 'Konan Arthur KONAN',
+      photo: 'img/players/konan-arthur-konan.jpg',
+      height: 'sheet.h.konan',
+      weight: '65 kg',
+      club: 'EFYM',
+      number: 10,
+      pos: 'sheet.pos.cam',
+      foot: 'sheet.foot.right'
     }
   ];
 
@@ -239,13 +249,14 @@
         <h3 class="sheet-name">${p.name}</h3>
         <div class="sheet-pos" data-i18n="${p.pos}"></div>
         <div class="sheet-stats">
-          <div class="sheet-stat"><div class="v" data-i18n="sheet.height.val">${p.height}</div><div class="l" data-i18n="sheet.height">Taille</div></div>
+          <div class="sheet-stat"><div class="v" data-i18n="${p.height}"></div><div class="l" data-i18n="sheet.height">Taille</div></div>
           <div class="sheet-stat"><div class="v">${p.weight}</div><div class="l" data-i18n="sheet.weight">Poids</div></div>
           <div class="sheet-stat"><div class="v" data-i18n="${p.foot}"></div><div class="l" data-i18n="sheet.foot">Pied fort</div></div>
         </div>
         <dl class="sheet-rows">
           <div class="sheet-row"><dt data-i18n="sheet.name">Nom</dt><dd>${p.alt}</dd></div>
           <div class="sheet-row"><dt data-i18n="sheet.club">Club actuel</dt><dd>${p.club}</dd></div>
+          ${p.number ? `<div class="sheet-row"><dt data-i18n="sheet.number">Dossard</dt><dd>${p.number}</dd></div>` : ''}
           <div class="sheet-row"><dt data-i18n="sheet.pos">Poste</dt><dd data-i18n="${p.pos}"></dd></div>
           <div class="sheet-row"><dt data-i18n="sheet.foot">Pied fort</dt><dd data-i18n="${p.foot}"></dd></div>
         </dl>
