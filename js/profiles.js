@@ -110,7 +110,7 @@ function sheetHTML(p) {
       </div>
       <div class="pf-photo">
         <img src="${p.photo}" alt="${full}" loading="lazy" onerror="this.remove();" />
-        <img class="pf-badge" src="img/logo.png" alt="" aria-hidden="true" />
+        <img class="pf-badge" src="img/logo-pitch.png" alt="" aria-hidden="true" />
         ${p.number ? `<span class="pf-number">${p.number}</span>` : ''}
       </div>
     </div>
