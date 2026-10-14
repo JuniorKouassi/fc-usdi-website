@@ -1011,7 +1011,7 @@ ul { list-style:none; }
 }
 .club-inner {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: minmax(0, 820px);
   gap: 4rem;
   align-items: start;
 }
