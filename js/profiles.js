@@ -72,10 +72,14 @@ function pitchSVG(pos) {
       <rect x="97.5" y="24.84" width="5.5" height="18.32"/>
     </g>
     <circle cx="52.5" cy="34" r="0.6" fill="rgba(255,255,255,0.7)"/>
-    <!-- FC USDI logo marks our half (we attack left → right) -->
-    <clipPath id="pf-logo-clip"><circle cx="37" cy="34" r="8"/></clipPath>
-    <image href="img/logo.png" x="29" y="26" width="16" height="16" clip-path="url(#pf-logo-clip)"/>
-    <circle cx="37" cy="34" r="8" fill="none" stroke="#D4A017" stroke-width="0.6"/>
+    <!-- FC USDI side = left half (we attack left → right): faded logos + one main logo -->
+    <g opacity="0.2">
+      <image href="img/logo-pitch.png" x="5"  y="4"  width="14" height="14"/>
+      <image href="img/logo-pitch.png" x="27" y="4"  width="14" height="14"/>
+      <image href="img/logo-pitch.png" x="5"  y="50" width="14" height="14"/>
+      <image href="img/logo-pitch.png" x="27" y="50" width="14" height="14"/>
+    </g>
+    <image href="img/logo-pitch.png" x="28" y="25" width="18" height="18"/>
     <circle class="pf-spot-ring" cx="${s.x}" cy="${s.y}" r="5" fill="rgba(212,160,23,0.25)"/>
     <circle cx="${s.x}" cy="${s.y}" r="3" fill="#D4A017" stroke="#000" stroke-width="0.6"/>
   </svg>`;
