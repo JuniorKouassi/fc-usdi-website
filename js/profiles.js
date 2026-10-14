@@ -62,6 +62,9 @@ function pitchSVG(pos) {
       </pattern>
     </defs>
     <rect width="105" height="68" fill="url(#pf-stripes)"/>
+    <!-- FC USDI side = left half (we attack left → right): one big dim logo -->
+    <clipPath id="pf-half"><rect x="2" y="2" width="50.5" height="64"/></clipPath>
+    <image href="img/logo-pitch.png" x="-1" y="7" width="57" height="57" opacity="0.1" clip-path="url(#pf-half)"/>
     <g fill="none" stroke="rgba(255,255,255,0.55)" stroke-width="0.45">
       <rect x="2" y="2" width="101" height="64"/>
       <line x1="52.5" y1="2" x2="52.5" y2="66"/>
@@ -72,17 +75,45 @@ function pitchSVG(pos) {
       <rect x="97.5" y="24.84" width="5.5" height="18.32"/>
     </g>
     <circle cx="52.5" cy="34" r="0.6" fill="rgba(255,255,255,0.7)"/>
-    <!-- FC USDI side = left half (we attack left → right): faded logos + one main logo -->
-    <g opacity="0.2">
-      <image href="img/logo-pitch.png" x="5"  y="4"  width="14" height="14"/>
-      <image href="img/logo-pitch.png" x="27" y="4"  width="14" height="14"/>
-      <image href="img/logo-pitch.png" x="5"  y="50" width="14" height="14"/>
-      <image href="img/logo-pitch.png" x="27" y="50" width="14" height="14"/>
-      <image href="img/logo-pitch.png" x="28" y="25" width="18" height="18"/>
-    </g>
     <circle class="pf-spot-ring" cx="${s.x}" cy="${s.y}" r="5" fill="rgba(212,160,23,0.25)"/>
     <circle cx="${s.x}" cy="${s.y}" r="3" fill="#D4A017" stroke="#000" stroke-width="0.6"/>
+    <!-- arrow: direction of play (left → right), starts at the player's dot -->
+    <g stroke="#D4A017" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round" fill="none">
+      <line x1="${s.x + 4.6}" y1="${s.y}" x2="${s.x + 12.5}" y2="${s.y}"/>
+      <polyline points="${s.x + 10.4},${s.y - 2.1} ${s.x + 12.8},${s.y} ${s.x + 10.4},${s.y + 2.1}"/>
+    </g>
   </svg>`;
+}
+
+/* ── Partage : lien direct vers une fiche (profiles.html#prenom-nom) ── */
+function playerId(p) {
+  return `${p.first}-${p.last}`
+    .toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '')
+    .replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+}
+
+function playerLink(p) {
+  return new URL('profiles.html', location.href).href.split('#')[0] + '#' + playerId(p);
+}
+
+function shareHTML(p) {
+  const url = playerLink(p);
+  const text = `${p.first} ${p.last} — FC USDI`;
+  const u = encodeURIComponent(url);
+  const t = encodeURIComponent(text);
+  const a = (cls, href, icon, label) =>
+    `<a class="pf-sh ${cls}" href="${href}" target="_blank" rel="noopener" aria-label="${label}" title="${label}"><i class="${icon}"></i></a>`;
+  return `
+    <div class="pf-share">
+      <span class="pf-share-label"><i class="fa-solid fa-share-nodes"></i> <span data-i18n="sheet.share">Partager</span></span>
+      <div class="pf-share-btns">
+        ${a('pf-wa', `https://wa.me/?text=${encodeURIComponent(text + ' ' + url)}`, 'fa-brands fa-whatsapp', 'WhatsApp')}
+        ${a('pf-fb', `https://www.facebook.com/sharer/sharer.php?u=${u}`, 'fa-brands fa-facebook-f', 'Facebook')}
+        ${a('pf-tg', `https://t.me/share/url?url=${u}&text=${t}`, 'fa-brands fa-telegram', 'Telegram')}
+        ${a('pf-x', `https://twitter.com/intent/tweet?url=${u}&text=${t}`, 'fa-brands fa-x-twitter', 'X')}
+        <button type="button" class="pf-sh pf-copy" data-copy="${url}"><i class="fa-regular fa-copy"></i><span data-i18n="sheet.copy">Copier le lien</span></button>
+      </div>
+    </div>`;
 }
 
 function sheetHTML(p) {
@@ -94,7 +125,7 @@ function sheetHTML(p) {
     ? `<div class="pf-row"><dt data-i18n="sheet.number">Dossard</dt><dd>${p.number}</dd></div>`
     : '';
   return `
-  <article class="pf-card">
+  <article class="pf-card" id="${playerId(p)}">
     <div class="pf-top">
       <div class="pf-info">
         <div class="pf-kicker" data-i18n="sheet.portfolio">Fiche joueur</div>
@@ -107,6 +138,7 @@ function sheetHTML(p) {
           ${numberRow}
         </dl>
         ${videoBtn}
+        ${shareHTML(p)}
       </div>
       <div class="pf-photo">
         <img src="${p.photo}" alt="${full}" loading="lazy" onerror="this.remove();" />
@@ -141,4 +173,49 @@ function renderSheets(containerId, limit) {
   if (!el) return;
   const list = limit ? PLAYER_SHEETS.slice(0, limit) : PLAYER_SHEETS;
   el.innerHTML = list.map(sheetHTML).join('');
+
+  /* Lien direct : si l'adresse contient #prenom-nom, aller à la fiche et la mettre en valeur */
+  const target = location.hash ? document.getElementById(decodeURIComponent(location.hash.slice(1))) : null;
+  if (target && el.contains(target)) {
+    target.classList.add('pf-target');
+    setTimeout(() => target.scrollIntoView({ behavior: 'smooth', block: 'start' }), 350);
+  }
+}
+
+/* Bouton « Copier le lien » */
+document.addEventListener('click', function (e) {
+  const btn = e.target.closest('.pf-copy');
+  if (!btn) return;
+  const url = btn.dataset.copy;
+  const done = function () {
+    const span = btn.querySelector('span');
+    let lang = 'fr';
+    try { lang = localStorage.getItem('usdilang') || document.documentElement.lang || 'fr'; } catch (_) {}
+    const msg = lang === 'en' ? 'Link copied!' : 'Lien copié !';
+    const original = span.textContent;
+    span.removeAttribute('data-i18n');
+    span.textContent = msg;
+    btn.classList.add('is-done');
+    setTimeout(function () {
+      span.setAttribute('data-i18n', 'sheet.copy');
+      span.textContent = original;
+      btn.classList.remove('is-done');
+    }, 1800);
+  };
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(url).then(done, function () { fallbackCopy(url); done(); });
+  } else {
+    fallbackCopy(url); done();
+  }
+});
+
+function fallbackCopy(text) {
+  const ta = document.createElement('textarea');
+  ta.value = text;
+  ta.style.position = 'fixed';
+  ta.style.opacity = '0';
+  document.body.appendChild(ta);
+  ta.select();
+  try { document.execCommand('copy'); } catch (_) {}
+  document.body.removeChild(ta);
 }

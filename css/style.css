@@ -1472,6 +1472,35 @@ ul { list-style:none; }
 .pf-back { display: inline-flex; align-items: center; gap: 0.5rem; margin-bottom: 0.8rem; font-size: 0.75rem; color: var(--gray-4); letter-spacing: 0.06em; }
 .pf-back:hover { color: var(--gold); }
 
+/* ── Share buttons on player profiles ── */
+.pf-card { scroll-margin-top: 110px; }
+.pf-card.pf-target { animation: pf-flash 2.4s ease-out 1; }
+@keyframes pf-flash {
+  0%   { box-shadow: 0 0 0 3px var(--gold), 0 30px 60px rgba(0,0,0,0.45); }
+  100% { box-shadow: 0 0 0 3px rgba(212,160,23,0), 0 30px 60px rgba(0,0,0,0.45); }
+}
+.pf-share { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.8rem 1rem; margin-top: 1.4rem; }
+.pf-share-label { font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gray-4); font-weight: 700; white-space: nowrap; }
+.pf-share-label i { color: var(--gold); margin-right: 0.3rem; }
+.pf-share-btns { display: flex; align-items: center; flex-wrap: wrap; gap: 0.5rem; }
+.pf-sh {
+  display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+  height: 42px; min-width: 42px; padding: 0 0.9rem;
+  border: 1px solid rgba(255,255,255,0.18); border-radius: 6px;
+  background: rgba(255,255,255,0.04); color: var(--white);
+  font-size: 1.05rem; line-height: 1; cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition), transform var(--transition);
+}
+.pf-sh:hover { transform: translateY(-2px); color: #fff; }
+.pf-sh:not(.pf-copy) { width: 42px; padding: 0; }
+.pf-wa:hover { background: #25d366; border-color: #25d366; }
+.pf-fb:hover { background: #1877f2; border-color: #1877f2; }
+.pf-tg:hover { background: #229ed9; border-color: #229ed9; }
+.pf-x:hover  { background: #000; border-color: #666; }
+.pf-copy { font-family: inherit; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.04em; }
+.pf-copy:hover { background: var(--gold); border-color: var(--gold); color: #000; }
+.pf-copy.is-done { background: #16a34a; border-color: #16a34a; color: #fff; }
+
 @media (max-width: 860px) {
   .pf-top { grid-template-columns: minmax(0, 1fr); min-height: 0; }
   .pf-photo { order: -1; aspect-ratio: auto; height: 520px; }
