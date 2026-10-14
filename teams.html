@@ -133,6 +133,7 @@
       <h2 class="sheets-title" data-i18n-html="sheet.title">Fiches <span>techniques</span></h2>
       <p class="sheets-sub" data-i18n="sheet.sub">Les joueurs de l'USDI FC en un coup d'œil</p>
       <div class="sheets-grid" id="sheets-grid"></div>
+      <a class="pf-all" href="profiles.html"><span data-i18n="sheet.all">Voir tous les joueurs</span> <i class="fa-solid fa-arrow-right-long"></i></a>
     </div>
   </div>
 </section>
@@ -183,6 +184,7 @@
 
 <script src="js/data.js"></script>
 <script src="js/main.js"></script>
+<script src="js/profiles.js"></script>
 <script>
   const grid = document.getElementById('teams-grid');
   const search = document.getElementById('search');
@@ -211,73 +213,7 @@
   });
   render();
 
-  /* ── Fiches techniques des joueurs ──
-     Pour ajouter un joueur : ajouter un objet ci-dessous et déposer sa photo dans img/players/
-     Bouton vidéo : ajouter  video: 'https://www.youtube.com/...'  au joueur (sans lien, le bouton n'apparaît pas) */
-  const PLAYER_SHEETS = [
-    {
-      name: 'Boubacar Junior <span>KONE</span>',
-      alt: 'Boubacar Junior KONE',
-      photo: 'img/players/boubacar-junior-kone.jpg',
-      height: 'sheet.h.kone',
-      weight: '80 kg',
-      club: 'Espoir de Koumassi',
-      pos: 'sheet.pos.cb',
-      foot: 'sheet.foot.left',
-      video: 'https://youtu.be/XGRyCkb25ys'
-    },
-    {
-      name: 'Konan Arthur <span>KONAN</span>',
-      alt: 'Konan Arthur KONAN',
-      photo: 'img/players/konan-arthur-konan.jpg',
-      height: 'sheet.h.konan',
-      weight: '65 kg',
-      club: 'EFYM',
-      number: 10,
-      pos: 'sheet.pos.cam',
-      foot: 'sheet.foot.right',
-      video: 'https://youtu.be/XJ-_WLQwqW4'
-    },
-    {
-      name: 'Tony <span>GUEDE</span>',
-      alt: 'Tony Guede',
-      photo: 'img/players/tony-guede.jpg',
-      height: 'sheet.h.guede',
-      weight: '80 kg',
-      club: 'Espoir de Koumassi',
-      number: 9,
-      pos: 'sheet.pos.st',
-      foot: 'sheet.foot.right',
-      video: 'https://youtu.be/Z0TVw_7T9AQ'
-    }
-  ];
-
-  document.getElementById('sheets-grid').innerHTML = PLAYER_SHEETS.map(p => `
-    <article class="sheet">
-      <div class="sheet-photo">
-        <img src="${p.photo}" alt="${p.alt}" loading="lazy"
-             onerror="this.parentNode.classList.add('no-photo');this.remove();" />
-        <i class="fa-solid fa-user sheet-photo-fallback" aria-hidden="true"></i>
-      </div>
-      <div class="sheet-body">
-        <div class="sheet-club">${p.club}</div>
-        <h3 class="sheet-name">${p.name}</h3>
-        <div class="sheet-pos" data-i18n="${p.pos}"></div>
-        <div class="sheet-stats">
-          <div class="sheet-stat"><div class="v" data-i18n="${p.height}"></div><div class="l" data-i18n="sheet.height">Taille</div></div>
-          <div class="sheet-stat"><div class="v">${p.weight}</div><div class="l" data-i18n="sheet.weight">Poids</div></div>
-          <div class="sheet-stat"><div class="v" data-i18n="${p.foot}"></div><div class="l" data-i18n="sheet.foot">Pied fort</div></div>
-        </div>
-        <dl class="sheet-rows">
-          <div class="sheet-row"><dt data-i18n="sheet.name">Nom</dt><dd>${p.alt}</dd></div>
-          <div class="sheet-row"><dt data-i18n="sheet.club">Club actuel</dt><dd>${p.club}</dd></div>
-          ${p.number ? `<div class="sheet-row"><dt data-i18n="sheet.number">Dossard</dt><dd>${p.number}</dd></div>` : ''}
-          <div class="sheet-row"><dt data-i18n="sheet.pos">Poste</dt><dd data-i18n="${p.pos}"></dd></div>
-          <div class="sheet-row"><dt data-i18n="sheet.foot">Pied fort</dt><dd data-i18n="${p.foot}"></dd></div>
-        </dl>
-        ${p.video ? `<a class="sheet-video" href="${p.video}" target="_blank" rel="noopener"><i class="fa-brands fa-youtube"></i><span data-i18n="sheet.video">Voir la vidéo</span></a>` : ''}
-      </div>
-    </article>`).join('');
+  renderSheets('sheets-grid', 1);
 </script>
 <script src="js/i18n.js"></script>
 

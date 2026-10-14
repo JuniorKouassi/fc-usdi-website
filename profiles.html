@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fiches techniques — USDI FC</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icons/7.2.3/css/flag-icons.min.css" crossorigin="anonymous" />
+  <style>
+    .filter-bar { display:flex; gap:0.5rem; align-items:center; flex-wrap:wrap; margin-bottom:1.5rem; }
+    .search-box {
+      display:flex; align-items:center; gap:0.5rem;
+      background:var(--black-mid); border:1px solid var(--dark);
+      padding:0.45rem 0.75rem; flex:1; min-width:180px;
+    }
+    .search-box input {
+      background:none; border:none; outline:none;
+      font:inherit; font-size:0.8rem; color:var(--white); width:100%;
+    }
+    .search-box input::placeholder { color:var(--gray-3); }
+    .filter-chip {
+      padding:0.4rem 1rem; font-size:0.7rem; font-weight:600;
+      letter-spacing:0.06em; text-transform:uppercase;
+      background:var(--black-mid); border:1px solid var(--dark);
+      color:var(--gray-3); cursor:pointer; transition:all var(--transition);
+    }
+    .filter-chip.active, .filter-chip:hover {
+      background:var(--gold); border-color:var(--gold); color:#000;
+    }
+  </style>
+</head>
+<body>
+
+<!-- ANNOUNCEMENT BAR -->
+<div class="announce-bar">
+  <div data-i18n-html="announce">🔔 Détection de talents 2026 — <a href="FC USDI Desktop.html#club">Inscriptions ouvertes</a></div>
+  <div class="announce-socials">
+    <a href="https://www.instagram.com/unionsportivedeladiaspora/" target="_blank" rel="noopener" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+    <a href="https://www.facebook.com/unionsportivedeladiaspora" target="_blank" rel="noopener" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+    <a href="https://x.com/fcusdi" target="_blank" rel="noopener" title="Twitter / X"><i class="fa-brands fa-x-twitter"></i></a>
+    <a href="https://www.youtube.com/channel/UCHBA-fiMs9pzXdzV5kR6Mww" target="_blank" rel="noopener" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
+    <a href="https://www.flickr.com/photos/202598756@N03/albums/" target="_blank" rel="noopener" title="Flickr"><i class="fa-brands fa-flickr"></i></a>
+    <div class="announce-lang">
+      <div class="lang-switcher">
+        <button class="lang-btn" data-lang="fr" onclick="setLang('fr')">FR <span class="fi fi-fr"></span></button>
+        <span class="lang-sep"></span>
+        <button class="lang-btn active" data-lang="en" onclick="setLang('en')">EN <span class="fi fi-gb"></span></button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <a class="nav-logo" href="FC USDI Desktop.html">
+    <img src="img/logo.png" alt="USDI FC" class="nav-logo-img" />
+    <span class="nav-logo-text">USDI FC</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="FC USDI Desktop.html" data-i18n="nav.home"><i class="fa-solid fa-house"></i>Accueil</a></li>
+    <li><a href="FC USDI Desktop.html#news" data-i18n="nav.news"><i class="fa-solid fa-newspaper"></i>Actualités</a></li>
+    <li><a href="teams.html" class="active" data-i18n="nav.team"><i class="fa-solid fa-shield-halved"></i>Équipe</a></li>
+    <li><a href="FC USDI Desktop.html#fixtures" data-i18n="nav.results"><i class="fa-solid fa-futbol"></i>Résultats</a></li>
+    <li><a href="FC USDI Desktop.html#club" data-i18n="nav.club"><i class="fa-solid fa-star"></i>Club</a></li>
+  </ul>
+  <div class="nav-actions">
+    <div class="lang-switcher">
+      <button class="lang-btn" data-lang="fr" onclick="setLang('fr')">
+        FR <span class="fi fi-fr"></span>
+      </button>
+      <span class="lang-sep"></span>
+      <button class="lang-btn active" data-lang="en" onclick="setLang('en')">
+        EN <span class="fi fi-gb"></span>
+      </button>
+    </div>
+    <a href="FC USDI Desktop.html#club" class="btn-nav btn-nav-primary" data-i18n="nav.join">Rejoindre</a>
+  </div>
+  <div class="nav-hamburger" onclick="document.getElementById('nav-drawer').classList.add('open')">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- MOBILE NAV DRAWER -->
+<div class="nav-drawer" id="nav-drawer">
+  <div class="nav-drawer-close" onclick="document.getElementById('nav-drawer').classList.remove('open')">✕</div>
+  <div class="nav-drawer-links">
+    <a href="FC USDI Desktop.html" data-i18n="nav.home" onclick="document.getElementById('nav-drawer').classList.remove('open')"><i class="fa-solid fa-house"></i>Accueil</a>
+    <a href="FC USDI Desktop.html#news" data-i18n="nav.news" onclick="document.getElementById('nav-drawer').classList.remove('open')"><i class="fa-solid fa-newspaper"></i>Actualités</a>
+    <a href="teams.html" class="active" data-i18n="nav.team" onclick="document.getElementById('nav-drawer').classList.remove('open')"><i class="fa-solid fa-shield-halved"></i>Équipe</a>
+    <a href="FC USDI Desktop.html#fixtures" data-i18n="nav.results" onclick="document.getElementById('nav-drawer').classList.remove('open')"><i class="fa-solid fa-futbol"></i>Résultats</a>
+    <a href="FC USDI Desktop.html#club" data-i18n="nav.club" onclick="document.getElementById('nav-drawer').classList.remove('open')"><i class="fa-solid fa-star"></i>Club</a>
+  </div>
+  <div class="nav-drawer-lang">
+    <div class="lang-switcher">
+      <button class="lang-btn" data-lang="fr" onclick="setLang('fr')">FR <span class="fi fi-fr"></span></button>
+      <span class="lang-sep"></span>
+      <button class="lang-btn active" data-lang="en" onclick="setLang('en')">EN <span class="fi fi-gb"></span></button>
+    </div>
+  </div>
+  <a href="https://wa.me/+436607118373" target="_blank" class="nav-drawer-join" data-i18n="nav.join">Rejoindre</a>
+</div>
+
+<!-- PAGE HEADER -->
+<div class="page-header">
+  <div class="section-wrap">
+    <a class="pf-back" href="teams.html"><i class="fa-solid fa-arrow-left-long"></i> <span data-i18n="sheet.back">Nos équipes</span></a>
+    <h1 data-i18n-html="sheet.title">Fiches <span>techniques</span></h1>
+    <p data-i18n="sheet.sub">Les joueurs de l'USDI FC en un coup d'œil</p>
+  </div>
+</div>
+
+<!-- GOLD DIVIDER -->
+<div class="gold-line"></div>
+
+<section style="padding:3rem 0;">
+  <div class="section-wrap">
+    <div class="sheets-grid" id="sheets-grid"></div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="section-wrap">
+    <div class="footer-legal">
+      <div class="footer-legal-title"><i class="fa-solid fa-scale-balanced"></i> <span data-i18n="footer.legal.title">Association sportive officiellement déclarée</span></div>
+      <p data-i18n="footer.legal.receipt">Récépissé de déclaration n° 0186/MIS/DGAT/DAG/SDVA, délivré le 7 juillet 2026 par le Ministère de l'Intérieur et de la Sécurité</p>
+      <p data-i18n="footer.legal.jo">Publiée au Journal Officiel de la République de Côte d'Ivoire n° 69 du 27 août 2026</p>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 USDI FC — Union Sportive de la Diaspora. Tous droits réservés.</span>
+      <div style="display:flex;gap:1.5rem;">
+        <a href="#">Mentions légales</a>
+        <a href="#">Confidentialité</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- BOTTOM NAV (mobile) -->
+<nav class="bottom-nav" aria-label="Navigation mobile">
+  <div class="bottom-nav-inner">
+    <a href="FC USDI Desktop.html" class="bottom-nav-item">
+      <i class="fa-solid fa-house"></i>
+      <span data-i18n="nav.home">Accueil</span>
+    </a>
+    <a href="FC USDI Desktop.html#news" class="bottom-nav-item">
+      <i class="fa-solid fa-newspaper"></i>
+      <span data-i18n="nav.news">Actualités</span>
+    </a>
+    <a href="FC USDI Desktop.html#fixtures" class="bottom-nav-item">
+      <i class="fa-solid fa-futbol"></i>
+      <span data-i18n="nav.results">Résultats</span>
+    </a>
+    <a href="FC USDI Desktop.html#club" class="bottom-nav-item">
+      <i class="fa-solid fa-star"></i>
+      <span data-i18n="nav.club">Club</span>
+    </a>
+    <a href="https://wa.me/+436607118373" target="_blank" class="bottom-nav-item bottom-nav-join">
+      <i class="fa-solid fa-plus"></i>
+      <span data-i18n="nav.join">Rejoindre</span>
+    </a>
+  </div>
+</nav>
+
+<script src="js/data.js"></script>
+<script src="js/main.js"></script>
+<script src="js/profiles.js"></script>
+<script>
+  renderSheets('sheets-grid');
+</script>
+<script src="js/i18n.js"></script>
+
+</body>
+</html>
