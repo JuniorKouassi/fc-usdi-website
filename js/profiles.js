@@ -78,8 +78,8 @@ function pitchSVG(pos) {
       <image href="img/logo-pitch.png" x="27" y="4"  width="14" height="14"/>
       <image href="img/logo-pitch.png" x="5"  y="50" width="14" height="14"/>
       <image href="img/logo-pitch.png" x="27" y="50" width="14" height="14"/>
+      <image href="img/logo-pitch.png" x="28" y="25" width="18" height="18"/>
     </g>
-    <image href="img/logo-pitch.png" x="28" y="25" width="18" height="18"/>
     <circle class="pf-spot-ring" cx="${s.x}" cy="${s.y}" r="5" fill="rgba(212,160,23,0.25)"/>
     <circle cx="${s.x}" cy="${s.y}" r="3" fill="#D4A017" stroke="#000" stroke-width="0.6"/>
   </svg>`;
