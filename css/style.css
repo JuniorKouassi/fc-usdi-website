@@ -1462,13 +1462,38 @@ ul { list-style:none; }
 .pf-dir i { color: var(--gold); margin-left: 0.3rem; }
 
 .pf-all {
-  display: flex; align-items: center; justify-content: center; gap: 0.7rem;
-  margin-top: 1.5rem; padding: 1.05rem 1.5rem;
-  border: 1px solid var(--gold); color: var(--gold);
-  font-size: 0.85rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
-  transition: background var(--transition), color var(--transition);
+  position: relative; overflow: hidden;
+  display: flex; align-items: center; justify-content: center; gap: 0.8rem;
+  margin-top: 1.5rem; padding: 1.15rem 1.5rem;
+  background: var(--gold); border: 1px solid var(--gold); color: #000;
+  font-size: 0.9rem; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase;
+  animation: pf-all-pulse 2.2s ease-in-out infinite;
+  transition: transform var(--transition), background var(--transition);
 }
-.pf-all:hover { background: var(--gold); color: #000; }
+/* light sweep passing over the button */
+.pf-all::after {
+  content: ''; position: absolute; top: 0; bottom: 0; left: -40%; width: 30%;
+  background: linear-gradient(100deg, transparent, rgba(255,255,255,0.55), transparent);
+  transform: skewX(-20deg);
+  animation: pf-all-shine 3s ease-in-out infinite;
+}
+.pf-all i { animation: pf-all-arrow 1.1s ease-in-out infinite; }
+.pf-all:hover { background: #e8b420; transform: translateY(-2px); animation-play-state: paused; }
+@keyframes pf-all-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(212,160,23,0.55), 0 0 14px rgba(212,160,23,0.25); }
+  50%      { box-shadow: 0 0 0 10px rgba(212,160,23,0), 0 0 26px rgba(212,160,23,0.5); }
+}
+@keyframes pf-all-shine {
+  0%, 35% { left: -40%; }
+  75%, 100% { left: 125%; }
+}
+@keyframes pf-all-arrow {
+  0%, 100% { transform: translateX(0); }
+  50%      { transform: translateX(7px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .pf-all, .pf-all::after, .pf-all i { animation: none; }
+}
 .pf-back { display: inline-flex; align-items: center; gap: 0.5rem; margin-bottom: 0.8rem; font-size: 0.75rem; color: var(--gray-4); letter-spacing: 0.06em; }
 .pf-back:hover { color: var(--gold); }
 
