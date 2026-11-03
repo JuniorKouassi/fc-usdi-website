@@ -52,6 +52,17 @@ const PLAYER_SHEETS = [
     club: 'Union Sportive de la Diaspora',
     pos: 'sheet.pos.cdm',
     foot: 'sheet.foot.left'
+  },
+  {
+    first: 'Seydouba',
+    last: 'DIAKITE',
+    photo: 'img/players/seydouba-diakite.jpg',
+    height: 'sheet.h.diakite',
+    weight: '70 kg',
+    club: 'Union Sportive de la Diaspora',
+    pos: 'sheet.pos.cam',
+    foot: 'sheet.foot.left',
+    video: 'https://youtu.be/BQK90WoxTOY'
   }
 ];
 
