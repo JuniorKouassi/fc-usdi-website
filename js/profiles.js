@@ -42,12 +42,23 @@ const PLAYER_SHEETS = [
     pos: 'sheet.pos.st',
     foot: 'sheet.foot.right',
     video: 'https://youtu.be/Z0TVw_7T9AQ'
+  },
+  {
+    first: 'Cheickh',
+    last: 'TAPSOBA',
+    photo: 'img/players/cheickh-tapsoba.jpg',
+    height: 'sheet.h.tapsoba',
+    weight: '77 kg',
+    club: 'Union Sportive de la Diaspora',
+    pos: 'sheet.pos.cdm',
+    foot: 'sheet.foot.left'
   }
 ];
 
 /* Position of each role on the pitch (viewBox 105 × 68, play goes left → right) */
 const PITCH_SPOTS = {
   'sheet.pos.cb':  { x: 20, y: 34 },
+  'sheet.pos.cdm': { x: 40, y: 34 },
   'sheet.pos.cam': { x: 66, y: 34 },
   'sheet.pos.st':  { x: 86, y: 34 }
 };
