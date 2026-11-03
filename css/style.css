@@ -1431,11 +1431,6 @@ ul { list-style:none; }
   width: 64px; height: 64px; object-fit: contain;
   filter: drop-shadow(0 2px 6px rgba(0,0,0,0.7));
 }
-.pf-number {
-  position: absolute; right: 1.2rem; bottom: 0.2rem; z-index: 2;
-  font-family: var(--font-display); font-size: 9rem; line-height: 1;
-  color: transparent; -webkit-text-stroke: 2px rgba(212,160,23,0.9);
-}
 .pf-bottom { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); border-top: 1px solid var(--dark); }
 .pf-figs, .pf-pitch-box { padding: 2rem 2.6rem 2.2rem; }
 .pf-pitch-box { border-left: 1px solid var(--dark); }
@@ -1537,7 +1532,6 @@ ul { list-style:none; }
   .pf-pitch-box { border-left: none; border-top: 1px solid var(--dark); }
   .pf-num { font-size: 2.2rem; }
   .pf-fig-grid > div { padding: 0.8rem 0; }
-  .pf-number { font-size: 6.5rem; }
 }
 
 .rec-w { color: var(--green); }
