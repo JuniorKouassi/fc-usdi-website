@@ -5,7 +5,6 @@
    - first / last : prénom(s) et nom (le nom s'affiche en grand, en doré)
    - height       : clé de traduction de la taille (ex. 'sheet.h.kone' → '1,82 m' / '1.82 m' dans js/i18n.js)
    - pos / foot   : clés de traduction du poste et du pied fort
-   - number       : dossard (facultatif)
    - video        : lien YouTube (facultatif ; sans lien, pas de bouton vidéo) */
 const PLAYER_SHEETS = [
   {
@@ -26,7 +25,6 @@ const PLAYER_SHEETS = [
     height: 'sheet.h.konan',
     weight: '65 kg',
     club: 'EFYM',
-    number: 10,
     pos: 'sheet.pos.cam',
     foot: 'sheet.foot.right',
     video: 'https://youtu.be/XJ-_WLQwqW4'
@@ -38,7 +36,6 @@ const PLAYER_SHEETS = [
     height: 'sheet.h.guede',
     weight: '80 kg',
     club: 'Espoir de Koumassi',
-    number: 9,
     pos: 'sheet.pos.st',
     foot: 'sheet.foot.right',
     video: 'https://youtu.be/Z0TVw_7T9AQ'
@@ -143,9 +140,6 @@ function sheetHTML(p) {
   const videoBtn = p.video
     ? `<a class="pf-video" href="${p.video}" target="_blank" rel="noopener"><i class="fa-brands fa-youtube"></i><span data-i18n="sheet.video">Voir la vidéo</span></a>`
     : '';
-  const numberRow = p.number
-    ? `<div class="pf-row"><dt data-i18n="sheet.number">Dossard</dt><dd>${p.number}</dd></div>`
-    : '';
   return `
   <article class="pf-card" id="${playerId(p)}">
     <div class="pf-top">
@@ -157,7 +151,6 @@ function sheetHTML(p) {
           <div class="pf-row"><dt data-i18n="sheet.club">Club actuel</dt><dd>${p.club}</dd></div>
           <div class="pf-row"><dt data-i18n="sheet.pos">Poste</dt><dd data-i18n="${p.pos}"></dd></div>
           <div class="pf-row"><dt data-i18n="sheet.foot">Pied fort</dt><dd data-i18n="${p.foot}"></dd></div>
-          ${numberRow}
         </dl>
         ${videoBtn}
         ${shareHTML(p)}
