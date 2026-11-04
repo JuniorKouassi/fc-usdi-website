@@ -5,6 +5,7 @@
    - first / last : prénom(s) et nom (le nom s'affiche en grand, en doré)
    - height       : clé de traduction de la taille (ex. 'sheet.h.kone' → '1,82 m' / '1.82 m' dans js/i18n.js)
    - pos / foot   : clés de traduction du poste et du pied fort
+   - traits       : clé de traduction d'une ligne « Qualités » (facultatif)
    - video        : lien YouTube (facultatif ; sans lien, pas de bouton vidéo) */
 const PLAYER_SHEETS = [
   {
@@ -60,6 +61,17 @@ const PLAYER_SHEETS = [
     pos: 'sheet.pos.cam',
     foot: 'sheet.foot.left',
     video: 'https://youtu.be/BQK90WoxTOY'
+  },
+  {
+    first: 'Jules Arsène',
+    last: 'RAMDE',
+    photo: 'img/players/jules-arsene-ramde.jpg',
+    height: 'sheet.h.ramde',
+    weight: '69 kg',
+    club: 'Union Sportive de la Diaspora',
+    pos: 'sheet.pos.cam',
+    foot: 'sheet.foot.right',
+    traits: 'sheet.t.ramde'
   }
 ];
 
@@ -151,6 +163,7 @@ function sheetHTML(p) {
           <div class="pf-row"><dt data-i18n="sheet.club">Club actuel</dt><dd>${p.club}</dd></div>
           <div class="pf-row"><dt data-i18n="sheet.pos">Poste</dt><dd data-i18n="${p.pos}"></dd></div>
           <div class="pf-row"><dt data-i18n="sheet.foot">Pied fort</dt><dd data-i18n="${p.foot}"></dd></div>
+          ${p.traits ? `<div class="pf-row"><dt data-i18n="sheet.traits">Qualités</dt><dd data-i18n="${p.traits}"></dd></div>` : ''}
         </dl>
         ${videoBtn}
         ${shareHTML(p)}
