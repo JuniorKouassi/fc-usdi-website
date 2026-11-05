@@ -89,6 +89,7 @@ const PLAYER_SHEETS = [
     photo: 'img/players/hamed-cisse.jpg',
     height: 'sheet.h.cisse',
     weight: '73 kg',
+    club: 'Union Sportive de la Diaspora',
     pos: 'sheet.pos.cb',
     foot: 'sheet.foot.right',
     traits: 'sheet.t.cisse'
