@@ -158,6 +158,7 @@ const T = {
     /* Fixtures */
     'fixtures.heading':   'Résultats & <span>Matchs</span>',
     'fixtures.all':       'Voir sur YouTube →',
+    'fixtures.swipe':     'Faites glisser pour voir plus',
 
     /* Spotlight */
     'spotlight.eye':      'Joueur du mois',
@@ -385,6 +386,7 @@ const T = {
     /* Fixtures */
     'fixtures.heading':   'Results & <span>Matches</span>',
     'fixtures.all':       'Watch on YouTube →',
+    'fixtures.swipe':     'Swipe to see more',
 
     /* Spotlight */
     'spotlight.eye':      'Player of the month',

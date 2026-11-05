@@ -238,6 +238,10 @@
       <h2 data-i18n-html="fixtures.heading">Résultats & <span>Matchs</span></h2>
       <a href="https://www.youtube.com/channel/UCHBA-fiMs9pzXdzV5kR6Mww" target="_blank" rel="noopener" data-i18n="fixtures.all">Tous les matchs →</a>
     </div>
+    <div class="fixtures-hint" id="fixtures-hint" aria-hidden="true">
+      <span data-i18n="fixtures.swipe">Faites glisser pour voir plus</span>
+      <i class="fa-solid fa-arrow-right-long"></i>
+    </div>
     <div class="fixtures-strip" id="fixtures-strip"></div>
   </div>
 </section>
@@ -458,6 +462,42 @@
 
   window.renderFixtures = renderFixtures;
   renderFixtures(localStorage.getItem('usdilang') || 'en');
+
+  /* Mobile only: results strip drifts slowly sideways; any touch/mouse pauses it, it resumes after a few idle seconds */
+  (function () {
+    const strip = document.getElementById('fixtures-strip');
+    const mq = window.matchMedia('(max-width: 767px)');
+    const calm = window.matchMedia('(prefers-reduced-motion: reduce)');
+    if (!strip) return;
+    const SPEED = 18;            // px per second — slow
+    const IDLE_MS = 3500;        // wait after the user touches it
+    const END_PAUSE_MS = 1800;   // wait at the end before going back
+    let pos = 0, last = 0, pausedUntil = 0, raf = 0;
+
+    function pause(ms) { pausedUntil = performance.now() + ms; pos = strip.scrollLeft; }
+    ['touchstart', 'pointerdown', 'wheel', 'mouseenter'].forEach(ev =>
+      strip.addEventListener(ev, () => pause(IDLE_MS), { passive: true }));
+    strip.addEventListener('touchmove', () => pause(IDLE_MS), { passive: true });
+    strip.addEventListener('scroll', () => { if (performance.now() >= pausedUntil) return; pos = strip.scrollLeft; }, { passive: true });
+
+    function tick(t) {
+      raf = requestAnimationFrame(tick);
+      if (!mq.matches || calm.matches) { last = t; return; }
+      const dt = Math.min(64, t - (last || t)); last = t;
+      if (t < pausedUntil) return;
+      const max = strip.scrollWidth - strip.clientWidth;
+      if (max <= 0) return;
+      if (pos >= max - 1) {                       // reached the end: pause, then back to the start
+        pausedUntil = t + END_PAUSE_MS;
+        strip.scrollTo({ left: 0, behavior: 'smooth' });
+        pos = 0;
+        return;
+      }
+      pos = Math.min(max, pos + SPEED * dt / 1000);
+      strip.scrollLeft = pos;
+    }
+    raf = requestAnimationFrame(tick);
+  })();
 
 
   // Category tabs

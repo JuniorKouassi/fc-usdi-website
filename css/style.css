@@ -863,6 +863,9 @@ ul { list-style:none; }
   scrollbar-width: none;
 }
 .fixtures-strip::-webkit-scrollbar { display:none; }
+.fixtures-hint { display: none; }
+@keyframes fx-nudge { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(8px); } }
+@media (prefers-reduced-motion: reduce) { .fixtures-hint i { animation: none !important; } }
 .fixture-card {
   background: var(--black-mid);
   padding: 1rem 1.25rem;
@@ -1878,12 +1881,22 @@ ul { list-style:none; }
   /* Fixtures — horizontal swipe carousel (mobile only) */
   .fixtures-section { padding: 1.5rem 0; }
   .fixtures-strip {
-    flex-direction: row; overflow-x: auto;
-    scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch;
+    flex-direction: row; overflow-x: auto; -webkit-overflow-scrolling: touch;
     padding-right: 1rem;
   }
+  .fixtures-hint {
+    display: flex; align-items: center; justify-content: flex-end; gap: 0.5rem;
+    margin: -0.25rem 0 0.6rem; font-size: 0.68rem; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--gold);
+  }
+  .fixtures-hint i { animation: fx-nudge 1.2s ease-in-out infinite; }
+  .fixtures-section .section-wrap { position: relative; }
+  .fixtures-section .section-wrap::after {
+    content: ''; position: absolute; right: 0; bottom: 0; width: 38px; height: calc(100% - 4.6rem);
+    background: linear-gradient(to right, rgba(8,8,8,0), var(--black)); pointer-events: none;
+  }
   .fixture-card {
-    flex: 0 0 62%; max-width: 230px; scroll-snap-align: start;
+    flex: 0 0 62%; max-width: 230px;
     display: block; padding: 0.85rem 1rem;
   }
   .fixture-competition { margin-bottom: 0.4rem; min-width: 0; white-space: normal; }
