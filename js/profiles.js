@@ -82,6 +82,16 @@ const PLAYER_SHEETS = [
     pos: 'sheet.pos.w',
     foot: 'sheet.foot.right',
     traits: 'sheet.t.tra'
+  },
+  {
+    first: 'Hamed',
+    last: 'CISSÉ',
+    photo: 'img/players/hamed-cisse.jpg',
+    height: 'sheet.h.cisse',
+    weight: '73 kg',
+    pos: 'sheet.pos.cb',
+    foot: 'sheet.foot.right',
+    traits: 'sheet.t.cisse'
   }
 ];
 
