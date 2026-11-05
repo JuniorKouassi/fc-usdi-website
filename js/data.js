@@ -23,6 +23,7 @@ const NEWS = [
 ];
 
 const FIXTURES = [
+  { competition:"Friendly", home:"FC USDI", away:"FC AFFALA", score:"0 – 0", date:"01 Nov 2026", result:"draw", link:"https://youtu.be/Ur60ORL9g40" },
   { competition:"Friendly", home:"AS Denguélé", away:"FC USDI", score:"0 – 0", date:"07 Oct 2026", result:"draw" },
   { competition:"Friendly", home:"FC USDI", away:"FC Satellite", score:"1 – 0", date:"26 Aug 2026", result:"win", link:"https://www.facebook.com/share/p/1PKiQL4wm4/" },
   { competition:"Friendly", home:"FC USDI", away:"Real FC d'Abengourou", score:"2 – 1", date:"22 Aug 2026", result:"win", link:"https://www.facebook.com/share/p/1HWZfxBXwD/" },
