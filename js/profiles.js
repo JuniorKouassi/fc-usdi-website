@@ -72,6 +72,16 @@ const PLAYER_SHEETS = [
     pos: 'sheet.pos.cam',
     foot: 'sheet.foot.right',
     traits: 'sheet.t.ramde'
+  },
+  {
+    first: 'Bénie Christ',
+    last: 'TRA',
+    photo: 'img/players/benie-christ-tra.jpg',
+    height: 'sheet.h.tra',
+    weight: '65 kg',
+    pos: 'sheet.pos.w',
+    foot: 'sheet.foot.right',
+    traits: 'sheet.t.tra'
   }
 ];
 
@@ -80,11 +90,22 @@ const PITCH_SPOTS = {
   'sheet.pos.cb':  { x: 20, y: 34 },
   'sheet.pos.cdm': { x: 40, y: 34 },
   'sheet.pos.cam': { x: 66, y: 34 },
-  'sheet.pos.st':  { x: 86, y: 34 }
+  'sheet.pos.st':  { x: 86, y: 34 },
+  // wingers: right wing (bottom of the pitch when attacking left → right) and left wing (top)
+  'sheet.pos.w':   [{ x: 70, y: 13 }, { x: 70, y: 55 }]
 };
 
 function pitchSVG(pos) {
-  const s = PITCH_SPOTS[pos] || { x: 52.5, y: 34 };
+  const raw = PITCH_SPOTS[pos] || { x: 52.5, y: 34 };
+  const spots = Array.isArray(raw) ? raw : [raw];   // a winger can play on both sides
+  const marks = spots.map(s => `
+    <circle class="pf-spot-ring" cx="${s.x}" cy="${s.y}" r="5" fill="rgba(212,160,23,0.25)"/>
+    <circle cx="${s.x}" cy="${s.y}" r="3" fill="#D4A017" stroke="#000" stroke-width="0.6"/>
+    <!-- arrow: direction of play (left → right), starts at the player's dot -->
+    <g stroke="#D4A017" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round" fill="none">
+      <line x1="${s.x + 4.6}" y1="${s.y}" x2="${s.x + 12.5}" y2="${s.y}"/>
+      <polyline points="${s.x + 10.4},${s.y - 2.1} ${s.x + 12.8},${s.y} ${s.x + 10.4},${s.y + 2.1}"/>
+    </g>`).join('');
   return `
   <svg class="pf-pitch" viewBox="0 0 105 68" role="img" aria-hidden="true">
     <defs>
@@ -106,13 +127,7 @@ function pitchSVG(pos) {
       <rect x="97.5" y="24.84" width="5.5" height="18.32"/>
     </g>
     <circle cx="52.5" cy="34" r="0.6" fill="rgba(255,255,255,0.7)"/>
-    <circle class="pf-spot-ring" cx="${s.x}" cy="${s.y}" r="5" fill="rgba(212,160,23,0.25)"/>
-    <circle cx="${s.x}" cy="${s.y}" r="3" fill="#D4A017" stroke="#000" stroke-width="0.6"/>
-    <!-- arrow: direction of play (left → right), starts at the player's dot -->
-    <g stroke="#D4A017" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round" fill="none">
-      <line x1="${s.x + 4.6}" y1="${s.y}" x2="${s.x + 12.5}" y2="${s.y}"/>
-      <polyline points="${s.x + 10.4},${s.y - 2.1} ${s.x + 12.8},${s.y} ${s.x + 10.4},${s.y + 2.1}"/>
-    </g>
+    ${marks}
   </svg>`;
 }
 
@@ -160,7 +175,7 @@ function sheetHTML(p) {
         <div class="pf-tag" data-i18n="${p.pos}"></div>
         <h3 class="pf-name"><span class="pf-first">${p.first}</span><span class="pf-last">${p.last}</span></h3>
         <dl class="pf-rows">
-          <div class="pf-row"><dt data-i18n="sheet.club">Club actuel</dt><dd>${p.club}</dd></div>
+          ${p.club ? `<div class="pf-row"><dt data-i18n="sheet.club">Club actuel</dt><dd>${p.club}</dd></div>` : ''}
           <div class="pf-row"><dt data-i18n="sheet.pos">Poste</dt><dd data-i18n="${p.pos}"></dd></div>
           <div class="pf-row"><dt data-i18n="sheet.foot">Pied fort</dt><dd data-i18n="${p.foot}"></dd></div>
           ${p.traits ? `<div class="pf-row"><dt data-i18n="sheet.traits">Qualités</dt><dd data-i18n="${p.traits}"></dd></div>` : ''}
