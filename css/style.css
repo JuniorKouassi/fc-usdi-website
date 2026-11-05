@@ -1875,18 +1875,21 @@ ul { list-style:none; }
   .stat-num { font-size: 2rem; }
   .stat-lbl { font-size: 0.58rem; }
 
-  /* Fixtures — vertical list */
+  /* Fixtures — horizontal swipe carousel (mobile only) */
   .fixtures-section { padding: 1.5rem 0; }
-  .fixtures-strip { flex-direction: column; overflow-x: visible; }
-  .fixture-card {
-    flex: none; width: 100%;
-    display: flex; align-items: center; gap: 0.75rem;
-    padding: 0.75rem 1rem;
+  .fixtures-strip {
+    flex-direction: row; overflow-x: auto;
+    scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch;
+    padding-right: 1rem;
   }
-  .fixture-competition { margin-bottom: 0; min-width: 55px; flex-shrink: 0; white-space: nowrap; }
-  .fixture-teams { flex: 1; margin-bottom: 0; }
-  .fixture-score-box { display: inline-block; margin: 0; font-size: 1.1rem; flex-shrink: 0; }
-  .fixture-date { flex-shrink: 0; white-space: nowrap; }
+  .fixture-card {
+    flex: 0 0 62%; max-width: 230px; scroll-snap-align: start;
+    display: block; padding: 0.85rem 1rem;
+  }
+  .fixture-competition { margin-bottom: 0.4rem; min-width: 0; white-space: normal; }
+  .fixture-teams { margin-bottom: 0.3rem; }
+  .fixture-score-box { display: block; margin: 0.25rem 0; font-size: 1.3rem; }
+  .fixture-date { white-space: normal; }
 
   /* Spotlight */
   .spotlight-section { height: 160px; }
