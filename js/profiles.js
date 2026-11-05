@@ -79,6 +79,7 @@ const PLAYER_SHEETS = [
     photo: 'img/players/benie-christ-tra.jpg',
     height: 'sheet.h.tra',
     weight: '65 kg',
+    club: 'Union Sportive de la Diaspora',
     pos: 'sheet.pos.w',
     foot: 'sheet.foot.right',
     traits: 'sheet.t.tra'
