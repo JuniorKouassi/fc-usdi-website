@@ -94,12 +94,25 @@ const PLAYER_SHEETS = [
     pos: 'sheet.pos.cb',
     foot: 'sheet.foot.right',
     traits: 'sheet.t.cisse'
+  },
+  {
+    first: 'Jean Baptiste',
+    last: 'EMOU',
+    photo: 'img/players/jean-baptiste-emou.jpg',
+    height: 'sheet.h.emou',
+    weight: '61 kg',
+    club: 'Union Sportive de la Diaspora',
+    pos: 'sheet.pos.lb',
+    foot: 'sheet.foot.left',
+    traits: 'sheet.t.emou'
   }
 ];
 
 /* Position of each role on the pitch (viewBox 105 × 68, play goes left → right) */
 const PITCH_SPOTS = {
   'sheet.pos.cb':  { x: 20, y: 34 },
+  // left back: his left is the top of the pitch when attacking left → right
+  'sheet.pos.lb':  { x: 30, y: 14 },
   'sheet.pos.cdm': { x: 40, y: 34 },
   'sheet.pos.cam': { x: 66, y: 34 },
   'sheet.pos.st':  { x: 86, y: 34 },
