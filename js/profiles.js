@@ -105,12 +105,24 @@ const PLAYER_SHEETS = [
     pos: 'sheet.pos.lb',
     foot: 'sheet.foot.left',
     traits: 'sheet.t.emou'
+  },
+  {
+    first: 'Ahui Yvan',
+    last: 'KOUAME',
+    photo: 'img/players/ahui-yvan-kouame.jpg',
+    height: 'sheet.h.kouame',
+    weight: '59 kg',
+    club: 'Union Sportive de la Diaspora',
+    pos: 'sheet.pos.gk',
+    foot: 'sheet.foot.right',
+    traits: 'sheet.t.kouame'
   }
 ];
 
 /* Position of each role on the pitch (viewBox 105 × 68, play goes left → right) */
 const PITCH_SPOTS = {
   'sheet.pos.cb':  { x: 20, y: 34 },
+  'sheet.pos.gk':  { x: 7, y: 34 },
   // left back: his left is the top of the pitch when attacking left → right
   'sheet.pos.lb':  { x: 30, y: 14 },
   'sheet.pos.cdm': { x: 40, y: 34 },
