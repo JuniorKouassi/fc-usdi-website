@@ -11,7 +11,12 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" crossorigin="anonymous" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icons/7.2.3/css/flag-icons.min.css" crossorigin="anonymous" />
   <style>
-    .filter-bar { display:flex; gap:0.5rem; align-items:center; flex-wrap:wrap; margin-bottom:1.5rem; }
+    .filter-bar { display:flex; gap:0.5rem; align-items:center; flex-wrap:wrap; }
+    .ph-flex { display:flex; align-items:center; justify-content:space-between; gap:2rem; flex-wrap:wrap; }
+    .sheet-tools { display:flex; flex-direction:column; gap:0.7rem; flex:1; min-width:260px; max-width:560px; }
+    .search-box i { color:var(--gold); font-size:0.8rem; }
+    .search-box input { font-size:0.9rem; }
+    .sheet-empty { text-align:center; color:var(--gray-4); padding:3rem 0; }
     .search-box {
       display:flex; align-items:center; gap:0.5rem;
       background:var(--black-mid); border:1px solid var(--dark);
@@ -119,10 +124,22 @@
 
 <!-- PAGE HEADER -->
 <div class="page-header">
-  <div class="section-wrap">
+  <div class="section-wrap ph-flex">
+    <div class="ph-text">
     <a class="pf-back" href="teams.html"><i class="fa-solid fa-arrow-left-long"></i> <span data-i18n="sheet.back">Nos équipes</span></a>
     <h1 data-i18n-html="sheet.title">Fiches <span>techniques</span></h1>
     <p data-i18n="sheet.sub">Les joueurs de l'USDI FC en un coup d'œil</p>
+    </div>
+    <div class="sheet-tools">
+      <div class="search-box"><i class="fa-solid fa-magnifying-glass"></i><input id="sheet-search" type="search" autocomplete="off" data-i18n-ph="sheet.search" placeholder="Rechercher un joueur ou un poste…" /></div>
+      <div class="filter-bar">
+        <button type="button" class="filter-chip active" data-group="all" data-i18n="sheet.f.all">Tous</button>
+        <button type="button" class="filter-chip" data-group="gk" data-i18n="sheet.f.gk">Gardiens</button>
+        <button type="button" class="filter-chip" data-group="def" data-i18n="sheet.f.def">Défenseurs</button>
+        <button type="button" class="filter-chip" data-group="mid" data-i18n="sheet.f.mid">Milieux</button>
+        <button type="button" class="filter-chip" data-group="att" data-i18n="sheet.f.att">Attaquants</button>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -132,6 +149,7 @@
 <section style="padding:3rem 0;">
   <div class="section-wrap">
     <div class="sheets-grid" id="sheets-grid"></div>
+    <p id="sheet-empty" class="sheet-empty" style="display:none" data-i18n="sheet.none">Aucun joueur ne correspond à votre recherche.</p>
   </div>
 </section>
 
@@ -184,6 +202,7 @@
 <script src="js/profiles.js"></script>
 <script>
   renderSheets('sheets-grid');
+initSheetFilter();
 </script>
 <script src="js/i18n.js"></script>
 

@@ -298,3 +298,58 @@ function fallbackCopy(text) {
   try { document.execCommand('copy'); } catch (_) {}
   document.body.removeChild(ta);
 }
+
+/* Recherche + filtre par poste (page des fiches) */
+const POS_GROUP = {
+  'sheet.pos.gk': 'gk',
+  'sheet.pos.cb': 'def', 'sheet.pos.lb': 'def',
+  'sheet.pos.cdm': 'mid', 'sheet.pos.cam': 'mid',
+  'sheet.pos.st': 'att', 'sheet.pos.w': 'att'
+};
+
+function sheetNorm(s) {
+  return String(s || '').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().trim();
+}
+
+function initSheetFilter() {
+  const grid = document.getElementById('sheets-grid');
+  const input = document.getElementById('sheet-search');
+  const chips = document.querySelectorAll('.filter-chip[data-group]');
+  if (!grid || !input || !chips.length) return;
+  const empty = document.getElementById('sheet-empty');
+  let group = 'all';
+
+  function lang() {
+    let l = 'fr';
+    try { l = localStorage.getItem('usdilang') || document.documentElement.lang || 'fr'; } catch (_) {}
+    return (typeof T !== 'undefined' && T[l]) ? l : 'fr';
+  }
+
+  function apply() {
+    const q = sheetNorm(input.value);
+    const cards = grid.children;
+    let shown = 0;
+    PLAYER_SHEETS.forEach(function (pl, i) {
+      const card = cards[i];
+      if (!card) return;
+      // on cherche dans le nom et dans le poste, dans les deux langues
+      const hay = sheetNorm([pl.first, pl.last, T.fr[pl.pos], T.en[pl.pos], T.fr['sheet.f.' + POS_GROUP[pl.pos]], T.en['sheet.f.' + POS_GROUP[pl.pos]]].join(' '));
+      const okText = !q || q.split(/\s+/).every(function (w) { return hay.indexOf(w) !== -1; });
+      const okGroup = group === 'all' || POS_GROUP[pl.pos] === group;
+      const ok = okText && okGroup;
+      card.style.display = ok ? '' : 'none';
+      if (ok) shown++;
+    });
+    if (empty) empty.style.display = shown ? 'none' : '';
+  }
+
+  input.addEventListener('input', apply);
+  chips.forEach(function (c) {
+    c.addEventListener('click', function () {
+      group = c.dataset.group;
+      chips.forEach(function (x) { x.classList.toggle('active', x === c); });
+      apply();
+    });
+  });
+  apply();
+}
