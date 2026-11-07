@@ -13,9 +13,13 @@
   <style>
     .filter-bar { display:flex; gap:0.5rem; align-items:center; flex-wrap:wrap; }
     .ph-flex { display:flex; align-items:center; justify-content:space-between; gap:2rem; flex-wrap:wrap; }
-    .sheet-tools { display:flex; flex-direction:column; gap:0.7rem; flex:1; min-width:260px; max-width:560px; }
+    .sheet-tools { display:flex; flex-direction:column; gap:0.7rem; flex:1; min-width:260px; max-width:640px; }
+    .filter-chip { padding:0.4rem 0.6rem; letter-spacing:0.04em; }
+    .filter-bar { gap:0.35rem; }
     .search-box i { color:var(--gold); font-size:0.8rem; }
     .search-box input { font-size:0.9rem; }
+    .chip-n { display:inline-block; min-width:1.4em; margin-left:0.35rem; padding:0.05rem 0.35rem; border-radius:99px; background:rgba(255,255,255,0.1); font-size:0.65rem; text-align:center; letter-spacing:0; }
+    .filter-chip.active .chip-n, .filter-chip:hover .chip-n { background:rgba(0,0,0,0.18); }
     .sheet-empty { text-align:center; color:var(--gray-4); padding:3rem 0; }
     .search-box {
       display:flex; align-items:center; gap:0.5rem;
@@ -133,11 +137,11 @@
     <div class="sheet-tools">
       <div class="search-box"><i class="fa-solid fa-magnifying-glass"></i><input id="sheet-search" type="search" autocomplete="off" data-i18n-ph="sheet.search" placeholder="Rechercher un joueur ou un poste…" /></div>
       <div class="filter-bar">
-        <button type="button" class="filter-chip active" data-group="all" data-i18n="sheet.f.all">Tous</button>
-        <button type="button" class="filter-chip" data-group="gk" data-i18n="sheet.f.gk">Gardiens</button>
-        <button type="button" class="filter-chip" data-group="def" data-i18n="sheet.f.def">Défenseurs</button>
-        <button type="button" class="filter-chip" data-group="mid" data-i18n="sheet.f.mid">Milieux</button>
-        <button type="button" class="filter-chip" data-group="att" data-i18n="sheet.f.att">Attaquants</button>
+        <button type="button" class="filter-chip active" data-group="all"><span data-i18n="sheet.f.all">Tous</span> <span class="chip-n"></span></button>
+        <button type="button" class="filter-chip" data-group="gk"><span data-i18n="sheet.f.gk">Gardiens</span> <span class="chip-n"></span></button>
+        <button type="button" class="filter-chip" data-group="def"><span data-i18n="sheet.f.def">Défenseurs</span> <span class="chip-n"></span></button>
+        <button type="button" class="filter-chip" data-group="mid"><span data-i18n="sheet.f.mid">Milieux</span> <span class="chip-n"></span></button>
+        <button type="button" class="filter-chip" data-group="att"><span data-i18n="sheet.f.att">Attaquants</span> <span class="chip-n"></span></button>
       </div>
     </div>
   </div>

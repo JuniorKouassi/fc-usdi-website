@@ -329,6 +329,13 @@ function initSheetFilter() {
   if (!grid || !input || !chips.length) return;
   const empty = document.getElementById('sheet-empty');
   let group = 'all';
+  // nombre de joueurs par rubrique
+  chips.forEach(function (c) {
+    const g = c.dataset.group;
+    const n = g === 'all' ? PLAYER_SHEETS.length : PLAYER_SHEETS.filter(function (pl) { return POS_GROUP[pl.pos] === g; }).length;
+    const b = c.querySelector('.chip-n');
+    if (b) b.textContent = n;
+  });
 
   function lang() {
     let l = 'fr';
