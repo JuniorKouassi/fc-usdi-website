@@ -116,6 +116,17 @@ const PLAYER_SHEETS = [
     pos: 'sheet.pos.gk',
     foot: 'sheet.foot.right',
     traits: 'sheet.t.kouame'
+  },
+  {
+    first: 'Franck Daniel',
+    last: 'KRA',
+    photo: 'img/players/franck-daniel-kra.jpg',
+    height: 'sheet.h.kra',
+    weight: '62 kg',
+    club: 'Union Sportive de la Diaspora',
+    pos: 'sheet.pos.st',
+    foot: 'sheet.foot.right',
+    traits: 'sheet.t.kra'
   }
 ];
 
