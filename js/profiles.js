@@ -120,7 +120,7 @@ const PLAYER_SHEETS = [
   {
     first: 'Franck Daniel',
     last: 'KRA',
-    photo: 'img/players/franck-daniel-kra.jpg',
+    photo: 'img/players/franck-daniel-kra-full.jpg',
     height: 'sheet.h.kra',
     weight: '62 kg',
     club: 'Union Sportive de la Diaspora',
