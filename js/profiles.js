@@ -102,8 +102,8 @@ const PLAYER_SHEETS = [
     height: 'sheet.h.emou',
     weight: '61 kg',
     club: 'Union Sportive de la Diaspora',
-    pos: 'sheet.pos.lb',
-    foot: 'sheet.foot.left',
+    pos: 'sheet.pos.backs',
+    foot: 'sheet.foot.right',
     traits: 'sheet.t.emou'
   },
   {
@@ -136,6 +136,8 @@ const PITCH_SPOTS = {
   'sheet.pos.gk':  { x: 7, y: 34 },
   // left back: his left is the top of the pitch when attacking left → right
   'sheet.pos.lb':  { x: 30, y: 14 },
+  // left back + right back + center back (Jean Baptiste EMOU)
+  'sheet.pos.backs': [{ x: 30, y: 14 }, { x: 30, y: 54 }, { x: 20, y: 34 }],
   'sheet.pos.cdm': { x: 40, y: 34 },
   'sheet.pos.cam': { x: 66, y: 34 },
   'sheet.pos.st':  { x: 86, y: 34 },
@@ -313,7 +315,7 @@ function fallbackCopy(text) {
 /* Recherche + filtre par poste (page des fiches) */
 const POS_GROUP = {
   'sheet.pos.gk': 'gk',
-  'sheet.pos.cb': 'def', 'sheet.pos.lb': 'def',
+  'sheet.pos.cb': 'def', 'sheet.pos.lb': 'def', 'sheet.pos.backs': 'def',
   'sheet.pos.cdm': 'mid', 'sheet.pos.cam': 'mid',
   'sheet.pos.st': 'att', 'sheet.pos.w': 'att'
 };
