@@ -127,6 +127,17 @@ const PLAYER_SHEETS = [
     pos: 'sheet.pos.st',
     foot: 'sheet.foot.right',
     traits: 'sheet.t.kra'
+  },
+  {
+    first: 'Guy Roger',
+    last: 'DIGBE',
+    photo: 'img/players/guy-roger-digbe.jpg',
+    height: 'sheet.h.digbe',
+    weight: '70 kg',
+    club: 'Union Sportive de la Diaspora',
+    pos: 'sheet.pos.st',
+    foot: 'sheet.foot.right',
+    traits: 'sheet.t.digbe'
   }
 ];
 
