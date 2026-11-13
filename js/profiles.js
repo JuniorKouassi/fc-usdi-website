@@ -137,7 +137,8 @@ const PLAYER_SHEETS = [
     club: 'Union Sportive de la Diaspora',
     pos: 'sheet.pos.st',
     foot: 'sheet.foot.right',
-    traits: 'sheet.t.digbe'
+    traits: 'sheet.t.digbe',
+    video: 'https://youtu.be/9p9v4WbKfA4'
   }
 ];
 
