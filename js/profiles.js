@@ -235,7 +235,7 @@ function sheetHTML(p) {
       <div class="pf-info">
         <div class="pf-kicker" data-i18n="sheet.portfolio">Fiche joueur</div>
         <div class="pf-tag" data-i18n="${p.pos}"></div>
-        <h3 class="pf-name"><span class="pf-first">${p.first}</span><span class="pf-last">${p.last}</span></h3>
+        <h3 class="pf-name"><a href="profiles.html#${playerId(p)}" title="${full}"><span class="pf-first">${p.first}</span><span class="pf-last">${p.last}</span></a></h3>
         <dl class="pf-rows">
           ${p.club ? `<div class="pf-row"><dt data-i18n="sheet.club">Club actuel</dt><dd>${p.club}</dd></div>` : ''}
           <div class="pf-row"><dt data-i18n="sheet.pos">Poste</dt><dd data-i18n="${p.pos}"></dd></div>
@@ -279,6 +279,7 @@ function renderSheets(containerId, limit) {
   el.innerHTML = list.map(sheetHTML).join('');
 
   /* Lien direct : si l'adresse contient #prenom-nom, aller à la fiche et la mettre en valeur */
+  if (document.getElementById('single-nav')) return;   // la page des fiches gère elle-même l'affichage d'une fiche seule
   const target = location.hash ? document.getElementById(decodeURIComponent(location.hash.slice(1))) : null;
   if (target && el.contains(target)) {
     target.classList.add('pf-target');
@@ -365,7 +366,9 @@ function initSheetFilter() {
       const card = cards[i];
       if (!card) return;
       // on cherche dans le nom et dans le poste, dans les deux langues
-      const hay = sheetNorm([pl.first, pl.last, T.fr[pl.pos], T.en[pl.pos], T.fr['sheet.f.' + POS_GROUP[pl.pos]], T.en['sheet.f.' + POS_GROUP[pl.pos]]].join(' '));
+      const tr = (typeof T !== 'undefined') ? T : { fr: {}, en: {} };
+      const gk = 'sheet.f.' + POS_GROUP[pl.pos];
+      const hay = sheetNorm([pl.first, pl.last, tr.fr[pl.pos], tr.en[pl.pos], tr.fr[gk], tr.en[gk]].join(' '));
       const okText = !q || q.split(/\s+/).every(function (w) { return hay.indexOf(w) !== -1; });
       const okGroup = group === 'all' || POS_GROUP[pl.pos] === group;
       const ok = okText && okGroup;
@@ -375,6 +378,7 @@ function initSheetFilter() {
     if (empty) empty.style.display = shown ? 'none' : '';
   }
 
+  window.applySheetFilter = apply;
   input.addEventListener('input', apply);
   chips.forEach(function (c) {
     c.addEventListener('click', function () {
@@ -384,4 +388,57 @@ function initSheetFilter() {
     });
   });
   apply();
+}
+
+/* Page des fiches : une adresse /profiles.html#prenom-nom n'affiche QUE ce joueur ;
+   sans #, on voit tous les joueurs (recherche + filtres). */
+function initProfilesPage() {
+  const grid = document.getElementById('sheets-grid');
+  const nav = document.getElementById('single-nav');
+  const tools = document.querySelector('.sheet-tools');
+  const sub = document.querySelector('.page-header p');
+  const hero = document.querySelector('.page-header h1');
+  if (!grid || !nav) return;
+  const baseTitle = document.title;
+  const heroHTML = hero ? hero.innerHTML : '';
+  const prevA = document.getElementById('pf-prev');
+  const nextA = document.getElementById('pf-next');
+
+  function route() {
+    let slug = '';
+    try { slug = decodeURIComponent(location.hash.slice(1)); } catch (_) {}
+    const idx = PLAYER_SHEETS.findIndex(function (pl) { return playerId(pl) === slug; });
+    const cards = grid.children;
+    const empty = document.getElementById('sheet-empty');
+
+    if (idx < 0) {                       // liste complète
+      nav.style.display = 'none';
+      if (tools) tools.style.display = '';
+      if (sub) sub.style.display = '';
+      if (hero) hero.innerHTML = heroHTML;
+      document.title = baseTitle;
+      for (let i = 0; i < cards.length; i++) cards[i].style.display = '';
+      if (window.applySheetFilter) window.applySheetFilter();
+      return;
+    }
+
+    // une seule fiche
+    const pl = PLAYER_SHEETS[idx];
+    const prev = PLAYER_SHEETS[(idx - 1 + PLAYER_SHEETS.length) % PLAYER_SHEETS.length];
+    const next = PLAYER_SHEETS[(idx + 1) % PLAYER_SHEETS.length];
+    for (let i = 0; i < cards.length; i++) cards[i].style.display = (i === idx) ? '' : 'none';
+    if (empty) empty.style.display = 'none';
+    if (tools) tools.style.display = 'none';
+    if (sub) sub.style.display = 'none';
+    nav.style.display = '';
+    prevA.href = '#' + playerId(prev);
+    nextA.href = '#' + playerId(next);
+    prevA.querySelector('b').textContent = prev.first + ' ' + prev.last;
+    nextA.querySelector('b').textContent = next.first + ' ' + next.last;
+    document.title = pl.first + ' ' + pl.last + ' — USDI FC';
+    window.scrollTo(0, 0);
+  }
+
+  window.addEventListener('hashchange', route);
+  route();
 }

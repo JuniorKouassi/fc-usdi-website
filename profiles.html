@@ -20,6 +20,18 @@
     .search-box input { font-size:0.9rem; }
     .chip-n { display:inline-block; min-width:1.4em; margin-left:0.35rem; padding:0.05rem 0.35rem; border-radius:99px; background:rgba(255,255,255,0.1); font-size:0.65rem; text-align:center; letter-spacing:0; }
     .filter-chip.active .chip-n, .filter-chip:hover .chip-n { background:rgba(0,0,0,0.18); }
+    .pf-singlenav { display:flex; gap:0.75rem; align-items:stretch; justify-content:space-between; flex-wrap:wrap; margin-bottom:1.5rem; }
+    .pf-navbtn { display:flex; align-items:center; gap:0.7rem; padding:0.6rem 1rem; background:var(--black-mid); border:1px solid var(--dark); color:var(--white); font-size:0.78rem; transition:all var(--transition); }
+    .pf-navbtn small { display:block; font-size:0.6rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--gray-3); }
+    .pf-navbtn b { font-weight:700; letter-spacing:0.03em; }
+    .pf-navbtn i { color:var(--gold); }
+    .pf-navbtn:hover { border-color:var(--gold); }
+    .pf-navnext { text-align:right; }
+    .pf-navall { background:var(--gold); border-color:var(--gold); color:#000; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; font-size:0.72rem; }
+    .pf-navall i { color:#000; }
+    .pf-navall:hover { background:#e8b420; }
+    .pf-name a { color:inherit; display:block; }
+    @media (max-width:640px) { .pf-singlenav { gap:0.5rem; } .pf-navbtn { flex:1 1 45%; padding:0.5rem 0.7rem; } .pf-navall { order:-1; flex-basis:100%; justify-content:center; } .pf-navbtn b { font-size:0.72rem; } }
     .sheet-empty { text-align:center; color:var(--gray-4); padding:3rem 0; }
     .search-box {
       display:flex; align-items:center; gap:0.5rem;
@@ -152,6 +164,11 @@
 
 <section style="padding:3rem 0;">
   <div class="section-wrap">
+    <div class="pf-singlenav" id="single-nav" style="display:none">
+      <a class="pf-navbtn" id="pf-prev" href="#"><i class="fa-solid fa-arrow-left-long"></i><span><small data-i18n="sheet.prev">Précédent</small><b></b></span></a>
+      <a class="pf-navbtn pf-navall" href="profiles.html"><i class="fa-solid fa-users"></i><span data-i18n="sheet.allplayers">Tous les joueurs</span></a>
+      <a class="pf-navbtn pf-navnext" id="pf-next" href="#"><span><small data-i18n="sheet.next">Suivant</small><b></b></span><i class="fa-solid fa-arrow-right-long"></i></a>
+    </div>
     <div class="sheets-grid" id="sheets-grid"></div>
     <p id="sheet-empty" class="sheet-empty" style="display:none" data-i18n="sheet.none">Aucun joueur ne correspond à votre recherche.</p>
   </div>
@@ -207,6 +224,7 @@
 <script>
   renderSheets('sheets-grid');
 initSheetFilter();
+initProfilesPage();
 </script>
 <script src="js/i18n.js"></script>
 
